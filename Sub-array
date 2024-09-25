@@ -1,0 +1,26 @@
+def max_basketball_score(N, K, A):
+    # To store the maximum score
+    max_score = float('-inf')
+    
+    # Iterate over the array to get the subarray of size K
+    for i in range(N - K + 1):
+        current_score = 0
+        # Loop to calculate the score for the current subarray of size K
+        for j in range(K):
+            # Since it's 1-based indexing, we add (i+j+1) as the position
+            current_score += (i + j + 1) * A[i + j]
+        
+        # Update the maximum score if the current score is higher
+        max_score = max(max_score, current_score)
+    
+    return max_score
+
+
+# Input format
+N = int(input("Enter the number of shots (N): "))  # Number of shots made
+K = int(input("Enter the size of the subarray (K): "))  # Size of the subarray
+A = list(map(int, input("Enter the array of distances: ").split()))  # Array of distances
+
+# Function call to get the maximum score
+result = max_basketball_score(N, K, A)
+print("Maximum possible score:", result)
